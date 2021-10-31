@@ -1,0 +1,109 @@
+/*CSS for the signUp page*/
+section {
+    display: flex;
+    flex-direction: column;
+    max-width: 32rem; /*Originally 20 rem but changed to 32 rem for 4 option layout*/
+    justify-content: center;
+    margin: auto;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    text-align: center;
+  }
+  
+  input {
+    margin-bottom: 10px;
+    max-width: 100%;
+    font-size: 24px;
+    padding: 3px;
+    border: 2px solid #eee;
+    border-radius: 4px;
+  }
+  
+  button {
+    border: none;
+    background-color: #0070f3;
+    flex: 1;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  
+  button a {
+    color: #fff;
+    text-decoration: none;
+  }
+  button a:hover{
+      color: #fff !important;
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .buttongroup {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  
+  .options{
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  /*RadioButton styles*/
+  input[type="radio"] { display: none; }
+  
+  input[type="radio"] + label {
+    position: relative;
+    padding-left: 35px;
+    /*font: 14px/20px 'Open Sans', Arial, sans-serif;*/
+    color: #222;
+    cursor: pointer;
+  }
+  
+  input[type="radio"] + label:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 1px solid #6cc0e5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: .6;
+    -webkit-transition: all .12s, border-color .08s;
+    transition: all .12s, border-color .08s;
+  }
+  
+  input[type="radio"]:checked + label:before {
+    width: 10px;
+    top: -5px;
+    left: 5px;
+    border-radius: 0;
+    opacity: 1;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  
+  .login {
+    background-color: #eee !important;
+    color: #000 !important;
+  }
+  
+  .login a {
+    color: #000 !important;
+  }
+  
+  .login a:hover{
+    color: #000 !important;
+  }

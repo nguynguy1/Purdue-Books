@@ -1,0 +1,108 @@
+/*CSS for the authorHome page*/
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  margin: auto;
+}
+
+.card {
+  line-height: 1;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.cardInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+a:hover {
+  color: #0070f3;
+}
+input {
+  margin-bottom: 3rem;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
+  font-size: 24px;
+  padding: 3px;
+  border: 2px solid #eee;
+  border-radius: 4px;
+}
+
+@media only screen and (max-width: 768px) {
+  .cardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 25rem;
+  }
+  .card {
+    margin: 5px auto;
+    min-width: 25rem;
+  }
+}
+
+.tabcontent {
+  display: none;
+}
+
+.tablinks{
+  opacity: 50%;
+}
+
+.active{
+  opacity: 100%;
+}
+
+button {
+  border: none;
+  background-color: #0070f3;
+  flex: 1;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+button a {
+  color: #fff;
+  text-decoration: none;
+}
+button a:hover{
+    color: #fff !important;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/*Placement of the Page numbers */
+.bottom_Section ul { 
+margin-top: 30px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+font-family: "Inter", sans-serif;
+}

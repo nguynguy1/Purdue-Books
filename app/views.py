@@ -101,6 +101,7 @@ def admin_profile():
             sch_id=sch_id, first_name=firstname, last_name=lastname, email=email)
         database.session.add(new_admin)
         database.session.commit()
+        return redirect(url_for('views.admin_home'))
 
     return render_template('administratorProfile.html')
 
@@ -120,6 +121,7 @@ def author_profile():
                           last_name=lastname, biography=biography, email=email, image=image)
         database.session.add(new_auth)
         database.session.commit()
+        return redirect(url_for('views.author_home'))
 
     return render_template('authorProfile.html')
 
@@ -139,6 +141,7 @@ def professor_profile():
                              last_name=lastname, biography=biography, email=email, image=image)
         database.session.add(new_prof)
         database.session.commit()
+        return redirect(url_for('views.professor_home'))
 
     return render_template('professorProfile.html')
 
@@ -158,6 +161,7 @@ def student_profile():
                            last_name=lastname, major=major, email=email, grade_year=gradeyear)
         database.session.add(new_stud)
         database.session.commit()
+        return redirect(url_for('views.student_home'))
 
     return render_template('studentProfile.html')
 
@@ -216,11 +220,11 @@ def sign_up():
             database.session.add(new_user)
             database.session.commit()
             login_user(new_user, remember=True)
-            if user.role == "student":
+            if role_type == "student":
                 return redirect(url_for('views.student_profile'))
-            if user.role == "professor":
+            if role_type == "professor":
                 return redirect(url_for('views.professor_profile'))
-            if user.role == "author":
+            if role_type == "author":
                 return redirect(url_for('views.author_profile'))
             else:
                 return redirect(url_for('views.admin_profile'))

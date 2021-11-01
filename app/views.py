@@ -3,29 +3,90 @@ from .models import Professor, User, Student, Author, School_Administrator
 from . import database
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
+import mysql.connector as connector
+from . import db
+
+db_connection = None
+db_cursor = None
+
+try:
+    db_connection = connector.connect(user=db.user,
+                                      password=db.password,
+                                      host=db.host,
+                                      database=db.name)
+except connector.Error as err:
+    print("ERROR")
+
+db_cursor = db_connection.cursor(buffered=True)
+db_cursor.execute("SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED")
+db_cursor.execute("USE Purdue_Books")
+
+def book_table(data):
+    if data == None:
+        return ""
+    table = "<table border = '1'>"
+    table = table + "<tr><th>Name</th><th>Url</th><th>Image</th><th>Athor</th><th>Author Info</th><th>Book ID</th><th>Summary</th></tr>"
+    for i in range(len(data)):
+        table = table + "<tr>\n"
+        table = table + "<td>" + str(data[i][0]) + "</td>"
+        table = table + "<td>" + str(data[i][1]) + "</td>"
+        table = table + "<td>" + "<img src ='" + str(data[i][2]) + "' width=60 height=40>" + "</td>"
+        table = table + "<td>" + str(data[i][3]) + "</td>"
+        table = table + "<td>" + str(data[i][4]) + "</td>"
+        table = table + "<td>" + str(data[i][5]) + "</td>"
+        table = table + "<td>" + str(data[i][6]) + "</td>"
+        table = table + "</tr>\n"
+    table = table + "</table>"
+    return table
+
+def get_book(name):
+    get_book_name_sql = "SELECT * FROM mytable WHERE name LIKE "
+    get_book_sql = get_book_name_sql + "'%" + name + "%' "
+    get_book_sql = get_book_sql + "OR author LIKE " + "'%" + name + "%' "
+    get_book_sql = get_book_sql + "OR book_id LIKE " + "'%" + name + "%' "
+    db_cursor.execute(get_book_sql)
+    books = []
+    for book in db_cursor.fetchall():
+        books.append(
+            {"name": book[0], "url": book[1], "image": book[2], "author": book[3],
+             "author_url": book[4], "book_id": book[5], "summary": str(book[6])[0:50]})
+    return books
 
 views = Blueprint('views', __name__)
 
+@views.route('/result.html', methods=['POST', 'GET'])
+def search():
+    if request.method == 'POST':
+        res = request.form['re']
+        result = get_book(res)
+        print("result is : " + str(result))
+        return render_template('results.html',Data=result)
+    else:
+        return render_template('search.html')
 
 @views.route('/administratorHome.html')
 @login_required
 def admin_home():
     return render_template('administratorHome.html')
 
+
 @views.route('/authorHome.html')
 @login_required
 def author_home():
     return render_template('authorHome.html')
+
 
 @views.route('/professorHome.html')
 @login_required
 def professor_home():
     return render_template('professorHome.html')
 
+
 @views.route('/studentHome.html')
 @login_required
 def student_home():
     return render_template('studentHome.html')
+
 
 @views.route('/administratorProfile.html', methods=['GET', 'POST'])
 @login_required

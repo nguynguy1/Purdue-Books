@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Professor Profile</title>
-        <link rel="stylesheet" href="../css/global.css" />
-        <link rel="stylesheet" href="../css/professorProfile.css" />
+        <title>Administrator Profile</title>
+        <link rel="stylesheet" href="../static/css/global.css" />
+        <link rel="stylesheet" href="../static/css/administratorProfile.css" />
     </head>
-    <!--- Professor Header HTML Code --->
+    <!--- Administrator Header HTML Code --->
   <nav>
     <div>
-        <h2>PROFESSOR</h2>
+        <h2>ADMINISTRATOR</h2>
     </div>
         <ul>
             <li>
-                <a href="professorHome.html">
+                <a href="administratorHome.html">
                 <div>HOME</div>
                 </a>
             </li>
             <li>
-                <a href="professorProfile.html">
+                <a href="administratorProfile.html">
                 <div>SETTINGS</div>
                 </a>
             </li>
@@ -31,15 +31,13 @@
     <body>
           <section>
             <h2>Profile</h2>
-            <form name="myForm" action="php/student_php/studentDetails.php" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data"></form>
+            <form name="blank" id="blank" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data"></form>
+            <form name="myForm" id="myForm" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
             <div class="sectionOne">
                 <!-- File Upload -->
-                <input type="file" name="fileToUpload" id="fileToUpload" required/>
                 <input id="first_name" type="text" name="firstname" placeholder="First Name" value="" />
                 <input id="last_name" type="text" name="lastname" placeholder="Last Name" value="" />
                 <input id="email" type="text" name="email" placeholder="Email" value="" />
-                <!-- Job Description -->
-				<textarea rows="4" cols="50" type="text" name="biography" placeholder="Biography" required></textarea>
             </div>
             <div class="sectionThree">
                 <button type="submit" name="submit" class="submit">Submit</button>
